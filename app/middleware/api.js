@@ -8,7 +8,6 @@ export const CALL_API = Symbol('CALL_API');
 export const CHAIN_API = Symbol('CHAIN_API');
 
 export default ({dispatch, getState}) => next => action => {
-    console.log(3);
     if (action[CALL_API]) {
         console.log(4);
         return dispatch({

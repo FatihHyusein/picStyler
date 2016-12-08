@@ -3,15 +3,13 @@ import _ from 'lodash';
 import Immutable from 'immutable';
 
 let defaultState = Immutable.fromJS({
-    user: {}
+    sidenavToggled: false
 });
 
 export default function (state = defaultState, action) {
-    console.log(5);
     switch (action.type) {
         case ActionType.TOGGLE_SIDE_NAV:
-            console.log(6);
-            return state.merge(action.response);
+            return state.merge({sidenavToggled: !state.get('sidenavToggled')});
 
         default:
             return state;

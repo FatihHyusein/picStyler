@@ -3,6 +3,12 @@ import {Link} from 'react-router';
 import * as GlobalActions from '../../actions/globals';
 
 class Toolbar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.toggleSidenav = this.toggleSidenav.bind(this);
+    }
+
     render() {
         return (
             <div className="toolbar">
@@ -28,9 +34,12 @@ class Toolbar extends Component {
     }
 
     toggleSidenav() {
-        console.log(1);
-        GlobalActions.toggleSideNav();
+        this.props.globalProps.dispatch(GlobalActions.toggleSideNav());
     }
 }
+
+Toolbar.propTypes = {
+    globalProps: PropTypes.object.isRequired
+};
 
 export default Toolbar;
