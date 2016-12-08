@@ -21,7 +21,7 @@ class AppRoute extends Component {
                     htmlAttributes={{"lang": "en"}}
                 />
                 <Toolbar globalProps={this.props}/>
-                <SideNavigation />
+                <SideNavigation globalProps={this.props.globals}/>
                 {this.props.children}
                 <Footer/>
 
@@ -31,7 +31,7 @@ class AppRoute extends Component {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {globals: state.globals}
 }
 
 export default connect(mapStateToProps)(AppRoute)
