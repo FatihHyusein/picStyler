@@ -16,23 +16,27 @@ class ProfileRoute extends Component {
     }
 
     render() {
+        let profile = this.props.profileData.get('profile');
+
         return (
             <div>
                 <Helmet
-                    title={'Profile id: ' + this.props.params.id}
+                    title={profile.get('name')}
                 />
-                {this.props.profile}
+                <img src={profile.get('profileImgUrl')} alt={profile.get('name')}/>
+                <h1>{profile.get('name')}</h1>
+                <p>{profile.get('description')}</p>
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {profile: state.profile}
+    return {profileData: state.profileDetail}
 }
 
 ProfileRoute.propTypes = {
-    profile: PropTypes.object.isRequired
+    profileData: PropTypes.object.isRequired
 };
 
 export {ProfileRoute}

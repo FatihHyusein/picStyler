@@ -8,12 +8,14 @@ import HomeRoute from 'containers/HomeRoute'
 import Questions from 'containers/Questions'
 import Question from 'containers/Question'
 import ProfileListRoute from '../containers/ProfileListRoute';
+import ProfileRoute from '../containers/ProfileRoute';
 
 export default function (history) {
     return (
         <Router history={history}>
             <Route path="/" component={AppRoute}>
                 <Route path="profiles" component={ProfileListRoute}/>
+                <Route path="profiles/:id" component={ProfileRoute}/>
                 <Route path="questions" component={Questions}/>
                 <Route path="questions/:id" component={Question}/>
                 <IndexRoute component={HomeRoute}/>
