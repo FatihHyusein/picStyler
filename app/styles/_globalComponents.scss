@@ -1,0 +1,32 @@
+.footer {
+    display: none;
+}
+
+.side-navigation {
+    position: fixed;
+    left: -100%;
+    right: 100%;
+    bottom: 0;
+    top: 120px;
+    background: blue;
+
+    &.active {
+
+        left: 0;
+        right: 0;
+    }
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    & > div {
+        display: flex;
+        align-items: center;
+    }
+
+    .action-img {
+        width: 30px;
+    }
+
+}

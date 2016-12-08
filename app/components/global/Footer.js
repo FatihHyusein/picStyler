@@ -4,10 +4,9 @@ import {Link} from 'react-router'
 class Footer extends Component {
     render() {
         return (
-            <div>
+            <div className="footer">
                 this will be the footer
             </div>
-
         )
     }
 }

@@ -56,6 +56,11 @@ server.get('/api/questions', (req, res)=> {
     res.send(questions)
 });
 
+server.get('/api/profiles', (req, res)=> {
+    let {profiles} = require('./mock_api');
+    res.send(profiles)
+});
+
 server.get('/api/users/:id', (req, res)=> {
     let {getUser} = require('./mock_api');
     res.send(getUser(req.params.id))

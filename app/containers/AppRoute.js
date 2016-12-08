@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import SideNavigation from '../components/SideNavigation';
-import Toolbar from '../components/Toolbar';
-import Footer from '../components/Footer';
+import SideNavigation from '../components/global/SideNavigation';
+import Toolbar from '../components/global/Toolbar';
+import Footer from '../components/global/Footer';
 
 class AppRoute extends Component {
     render() {
