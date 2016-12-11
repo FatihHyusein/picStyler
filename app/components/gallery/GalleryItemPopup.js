@@ -1,7 +1,15 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {addComment} from '../../actions/gallery';
 
 class GalleryItemPopup extends Component {
+    constructor(props) {
+        super(props);
+
+        this.sendNewComment = this.sendNewComment.bind(this);
+    }
+
     render() {
         let item = this.props.item;
         let comments = (
@@ -29,10 +37,25 @@ class GalleryItemPopup extends Component {
                     <div className="social-container">
 
                         {comments}
+                        <div className="comment">
+                            <div className="comment-profile">
+                                <img src={this.props.myProfile.get('profileImgUrl')}
+                                     alt={this.props.myProfile.get('name')}/>
+                            </div>
+                            <div className="comment-data">
+                                <textarea rows="3" placeholder="Your comment..."></textarea>
+
+                                <button onClick={this.sendNewComment}>Enter</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    sendNewComment() {
+        this.props.dispatch(addComment(this.props.item.get('id'), {test: 123}));
     }
 
     componentDidMount() {
@@ -49,4 +72,10 @@ GalleryItemPopup.propTypes = {
     closePopupHandler: React.PropTypes.func,
 };
 
-export default GalleryItemPopup;
+function mapStateToProps(state) {
+    return {myProfile: state.globals.get('myProfile')}
+}
+export {GalleryItemPopup};
+
+export default connect(mapStateToProps)(GalleryItemPopup)
+

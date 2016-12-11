@@ -91,7 +91,7 @@ export const tagGroups = [
     }
 ];
 
-export const galleryList = [
+export let galleryList = [
     {
         id: '0',
         isPublic: true,

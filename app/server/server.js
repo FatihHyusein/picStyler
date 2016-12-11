@@ -56,6 +56,24 @@ server.get('/api/mainGallery', (req, res)=> {
     res.send(galleryList);
 });
 
+server.get('/api/galleryItem/:id', (req, res)=> {
+    let {galleryList} = require('./mock_api');
+    res.send(galleryList[req.params.id]);
+});
+
+server.post('/api/galleryItem/:id/addComment', (req, res)=> {
+    let {galleryList} = require('./mock_api');
+    let newId = galleryList[req.params.id].social.comments.length + 50;
+    galleryList[req.params.id].social.comments.push({
+        id: newId,
+        name: 'test' + newId,
+        text: 'tova e comment' + newId,
+        profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+    });
+    res.send(galleryList[req.params.id]);
+});
+
+
 // mock apis
 server.get('/api/questions', (req, res)=> {
     let {questions} = require('./mock_api');

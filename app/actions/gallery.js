@@ -11,4 +11,16 @@ export function loadGallery() {
     }
 }
 
+export const ADD_COMMENT = Symbol('ADD_COMMENT');
+export function addComment(galleryItemId, commentData) {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: `/api/galleryItem/${galleryItemId}/addComment`,
+            successType: ADD_COMMENT,
+            body: commentData
+        }
+    }
+}
+
 
