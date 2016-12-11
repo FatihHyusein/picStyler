@@ -7,6 +7,7 @@ class Toolbar extends Component {
         super(props);
 
         this.toggleSidenav = this.toggleSidenav.bind(this);
+        this.toggleLoginForm = this.toggleLoginForm.bind(this);
     }
 
     render() {
@@ -25,7 +26,7 @@ class Toolbar extends Component {
                                             alt="img uploader"/></button>
                     </div>
                     <div>
-                        <button>Log in</button>
+                        <button onClick={this.toggleLoginForm}>Log in</button>
                     </div>
                 </div>
             </div>
@@ -35,6 +36,10 @@ class Toolbar extends Component {
 
     toggleSidenav() {
         this.props.globalProps.dispatch(GlobalActions.toggleSideNav());
+    }
+
+    toggleLoginForm() {
+        this.props.globalProps.dispatch(GlobalActions.toggleLoginForm());
     }
 }
 

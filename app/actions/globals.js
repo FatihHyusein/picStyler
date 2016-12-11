@@ -7,3 +7,21 @@ export function toggleSideNav() {
     }
 }
 
+export const TOGGLE_LOGIN_FORM = Symbol('TOGGLE_LOGIN_FORM');
+export function toggleLoginForm() {
+    return {
+        type: TOGGLE_LOGIN_FORM
+    }
+}
+
+export const PROCEED_LOGIN = Symbol('PROCEED_LOGIN');
+export function login(loginData) {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: '/api/login',
+            successType: PROCEED_LOGIN,
+            body: loginData
+        }
+    }
+}

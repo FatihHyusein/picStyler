@@ -73,6 +73,11 @@ server.post('/api/galleryItem/:id/addComment', (req, res)=> {
     res.send(galleryList[req.params.id]);
 });
 
+server.post('/api/login', (req, res)=> {
+    let {myProfile} = require('./mock_api');
+    res.send(myProfile);
+});
+
 
 // mock apis
 server.get('/api/questions', (req, res)=> {
