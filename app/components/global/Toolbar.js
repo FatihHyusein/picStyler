@@ -12,11 +12,14 @@ class Toolbar extends Component {
     }
 
     render() {
+        let isLogged = !!this.props.globalProps.globals.get('myProfile').get('authToken');
+
         let profile = (
             <div>
-                <img src={this.props.globalProps.globals.get('myProfile').get('profileImgUrl')}
-                     alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
-
+                <Link to={`/profiles/${this.props.globalProps.globals.get('myProfile').get('id')}`}>
+                    <img src={this.props.globalProps.globals.get('myProfile').get('profileImgUrl')}
+                         alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
+                </Link>
                 <button onClick={this.logout}>Logout</button>
             </div>
         );
@@ -37,11 +40,11 @@ class Toolbar extends Component {
                     <Link to='/'><img src="/assets/logo.png" alt="logo"/></Link>
                 </div>
                 <div>
-                    <div>
+                    <div className={`${isLogged ? '' : 'display-none'}`}>
                         <button>Upload <img className="action-img" src="/assets/icons/hamburger.png"
                                             alt="img uploader"/></button>
                     </div>
-                    {this.props.globalProps.globals.get('myProfile').get('authToken') ? profile : login}
+                    {isLogged ? profile : login}
                 </div>
             </div>
 

@@ -42,6 +42,12 @@ export const profiles = [
         name: 'Fatih',
         description: 'sadpo aspdo aspd oasdipasoi ds',
         profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+    },
+    {
+        id: 99,
+        profileImgUrl: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQUZFtJIlYTrlR8TGNZKLhUM3uW3TNVNbM1l4Ns10aQy7qSLutvq6bNiOs",
+        name: 'Backend TRUCK',
+        description: 'sadpo aspdo aspd oasdipasoi ds'
     }
 ];
 
@@ -195,7 +201,8 @@ export let galleryList = [
 export const myProfile = {
     profileImgUrl: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQUZFtJIlYTrlR8TGNZKLhUM3uW3TNVNbM1l4Ns10aQy7qSLutvq6bNiOs",
     name: 'Backend TRUCK',
-    authToken: 'backend token'
+    authToken: 'backend token',
+    id: 99
 };
 
 export function getProfileById(id) {
