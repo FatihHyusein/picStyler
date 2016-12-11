@@ -16,8 +16,8 @@ class Toolbar extends Component {
                     <button onClick={this.toggleSidenav}><img className="action-img" src="/assets/icons/hamburger.png"
                                                               alt="nav-toggler"/></button>
                 </div>
-                <div>
-                    <img src="/assets/logo.png" alt="logo"/>
+                <div className="logo-container">
+                    <Link to='/'><img src="/assets/logo.png" alt="logo"/></Link>
                 </div>
                 <div>
                     <div>

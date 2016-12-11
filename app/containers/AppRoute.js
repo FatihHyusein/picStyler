@@ -21,7 +21,7 @@ class AppRoute extends Component {
                     htmlAttributes={{"lang": "en"}}
                 />
                 <Toolbar globalProps={this.props}/>
-                <SideNavigation globalProps={this.props.globals}/>
+                <SideNavigation globalProps={this.props}/>
                 {this.props.children}
                 <Footer/>
 

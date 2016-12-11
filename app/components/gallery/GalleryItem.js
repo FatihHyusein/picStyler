@@ -3,29 +3,23 @@ import {Link} from 'react-router';
 
 class GalleryItem extends Component {
     render() {
+        let item = this.props.item;
+        let social = this.props.item.get('social');
         return (
-            <div >
-
-
-                Questions component
-                {
-                    this.props.questions.map((q)=> {
-                        let id = q.get('id')
-                        return (
-                            <div key={id}>
-                                <Link to={`/questions/${id}`}> { q.get('content') }</Link>
-                            </div>
-                        )
-                    })
-                }
-                <Link to={`/questions/not-found`}> This link would be redirected to Index</Link>
+            <div className="gallery-item">
+                <img src={item.get('imgUrl')} alt={item.get('description')}/>
+                <div className="social">
+                    <div>{social.get('likes')}</div>
+                    <div>{social.get('shares')}</div>
+                    <div>{social.get('comments').length}</div>
+                </div>
             </div>
         )
     }
 }
 
 GalleryItem.propTypes = {
-    photo: PropTypes.Object.isRequired
+    item: PropTypes.object.isRequired
 };
 
-export default GalleryItem
+export default GalleryItem;

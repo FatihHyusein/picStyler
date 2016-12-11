@@ -1,20 +1,23 @@
-import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
+import * as GlobalActions from '../../actions/globals';
 
 class SideNavigation extends Component {
     constructor(props) {
         super(props);
+
+        this.toggleSidenav = this.toggleSidenav.bind(this);
     }
 
     render() {
-        let activeClass = this.props.globalProps.get('sidenavToggled') ? 'active' : '';
+        let activeClass = this.props.globalProps.globals.get('sidenavToggled') ? 'active' : '';
         return (
             <div className={'side-navigation ' + activeClass}>
                 <ul>
                     {
                         this.props.routes.map((route)=> {
                             return (
-                                <li key={route.url}>
+                                <li key={route.url} onClick={this.toggleSidenav}>
                                     <Link to={`${route.url}`}> { route.title }</Link>
                                 </li>
                             )
@@ -23,6 +26,10 @@ class SideNavigation extends Component {
                 </ul>
             </div>
         )
+    }
+
+    toggleSidenav() {
+        this.props.globalProps.dispatch(GlobalActions.toggleSideNav());
     }
 }
 

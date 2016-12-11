@@ -8,11 +8,10 @@
     right: 100%;
     bottom: 0;
     top: 120px;
-    background: blue;
+    background: bisque;
     transition-duration: 0.3s;
 
     &.active {
-
         left: 0;
         right: 0;
     }
@@ -28,6 +27,14 @@
 
     .action-img {
         width: 30px;
+    }
+
+    .logo-container {
+        max-width: 75%;
+        margin: auto;
+        img {
+            width: 100%;
+        }
     }
 
 }

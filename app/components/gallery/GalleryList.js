@@ -1,31 +1,58 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
+import {List} from 'immutable';
+import GalleryItem from './GalleryItem';
+import GalleryItemPopup from './GalleryItemPopup';
 
-class GalleryItem extends Component {
+class GalleryList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.openDetails = this.openDetails.bind(this);
+        this.closeItem = this.closeItem.bind(this);
+
+        this.state = {
+            selectedItem: null
+        };
+    }
+
     render() {
+        let detailView;
+        if (this.state.selectedItem) {
+            detailView = (<GalleryItemPopup item={this.state.selectedItem} closePopupHandler={this.closeItem}/>)
+        }
+
         return (
-            <div >
-
-
-                Questions component
+            <div className="gallery-list">
                 {
-                    this.props.questions.map((q)=> {
-                        let id = q.get('id')
+                    this.props.items.map((item)=> {
+                        let id = item.get('id');
                         return (
-                            <div key={id}>
-                                <Link to={`/questions/${id}`}> { q.get('content') }</Link>
+                            <div key={id} onClick={() => {
+                                this.openDetails(item)
+                            }}>
+                                <GalleryItem item={item}/>
                             </div>
                         )
                     })
                 }
-                <Link to={`/questions/not-found`}> This link would be redirected to Index</Link>
+
+                {detailView}
             </div>
         )
     }
+
+    openDetails(item) {
+        this.setState({selectedItem: item});
+    }
+
+    closeItem() {
+        this.setState({selectedItem: null});
+    }
 }
 
-GalleryItem.propTypes = {
-    photo: PropTypes.Object.isRequired
+GalleryList.propTypes = {
+    items: PropTypes.instanceOf(List).isRequired
 };
 
-export default GalleryItem
+export default GalleryList;

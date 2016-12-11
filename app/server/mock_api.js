@@ -45,6 +45,153 @@ export const profiles = [
     }
 ];
 
+
+export const tags = [
+    {
+        id: 1,
+        name: 'necke 1',
+        imgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/t31.0-8/10861005_921931227831113_5461891713365108654_o.jpg',
+        price: 25
+    },
+    {
+        id: 2,
+        name: 'necke 1',
+        imgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/t31.0-8/10861005_921931227831113_5461891713365108654_o.jpg',
+        price: 25
+    },
+    {
+        id: 3,
+        name: 'necke 1',
+        imgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/t31.0-8/10861005_921931227831113_5461891713365108654_o.jpg',
+        price: 25
+    },
+    {
+        id: 4,
+        name: 'zz',
+        imgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/t31.0-8/10861005_921931227831113_5461891713365108654_o.jpg',
+        price: 525
+    }
+];
+
+
+export const tagGroups = [
+    {
+        id: 1,
+        name: 'group tag 1',
+        tags: [
+            tags[0], tags[1]
+        ]
+    },
+    {
+        id: 2,
+        name: 'shoes',
+        tags: [
+            tags[2], tags[3]
+        ]
+    }
+];
+
+export const galleryList = [
+    {
+        id: '0',
+        isPublic: true,
+        uploader: 'Someone',
+        liked: true,
+        description: 'some looong description blah blah',
+        imgUrl: 'https://s-media-cache-ak0.pinimg.com/236x/7b/8c/b1/7b8cb1c5f571ebae231206e83fc75217.jpg',
+        social: {
+            likes: 5,
+            shares: 9,
+            comments: [
+                {
+                    id: 3,
+                    name: 'Ivan',
+                    text:'tova e comment',
+                    profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+                },
+                {
+                    id: 4,
+                    name: 'van',
+                    text:'tova e comment',
+                    profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+                }
+            ]
+        },
+        tagGroups: tagGroups
+    },
+    {
+        id: 1,
+        isPublic: true,
+        uploader: 'Ramm',
+        liked: false,
+        description: 'asd asd asd oaskdjas',
+        imgUrl: 'https://s-media-cache-ak0.pinimg.com/236x/5e/ed/68/5eed68f9409815baa2cf232393c09d55.jpg',
+        social: {
+            likes: 5000,
+            shares: 88,
+            comments: [
+                {
+                    id: 6,
+                    name: 'zizi ivavnn',
+                    text:'tova e comment',
+                    profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+                },
+                {
+                    id: 8,
+                    name: 'GOGO',
+                    text:'tova sad asd asd as dasd as ddsa dsa dsq we comment',
+                    profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+                }
+            ]
+        },
+        tagGroups: tagGroups
+    },
+    {
+        id: 2,
+        isPublic: false,
+        uploader: 'ZZZ',
+        liked: false,
+        description: 'some looong description blah blah',
+        imgUrl: 'https://s-media-cache-ak0.pinimg.com/236x/d1/f7/45/d1f745675d8c7ad20e057be26bd73307.jpg',
+        social: {
+            likes: 0,
+            shares: 0,
+            comments: []
+        },
+        tagGroups: []
+    },
+
+    {
+        id: 3,
+        isPublic: false,
+        uploader: 'ZZZ',
+        liked: false,
+        description: 'some looong description blah blah',
+        imgUrl: 'https://s-media-cache-ak0.pinimg.com/236x/67/6b/58/676b58338a83c03c07ae7264ebd1bfeb.jpg',
+        social: {
+            likes: 0,
+            shares: 0,
+            comments: []
+        },
+        tagGroups: []
+    },
+    {
+        id: 4,
+        isPublic: false,
+        uploader: 'ZZZ',
+        liked: false,
+        description: 'some looong description blah blah',
+        imgUrl: 'https://s-media-cache-ak0.pinimg.com/236x/29/c5/56/29c556bf9d171b60d123826984cb29d1.jpg',
+        social: {
+            likes: 0,
+            shares: 0,
+            comments: []
+        },
+        tagGroups: []
+    },
+];
+
+
 export function getProfileById(id) {
     for (let idx = 0; idx < profiles.length; idx++) {
         if (profiles[idx].id == id) {

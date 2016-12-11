@@ -1,6 +1,8 @@
-@import "home";
-@import "globalComponents";
-
 body {
     font-family: Arial;
 }
+
+@import "helpers";
+@import "home";
+@import "globalComponents";
+@import "gallery";

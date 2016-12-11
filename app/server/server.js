@@ -50,6 +50,12 @@ if (process.env.NODE_ENV === 'production') {
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
+
+server.get('/api/mainGallery', (req, res)=> {
+    let {galleryList} = require('./mock_api');
+    res.send(galleryList);
+});
+
 // mock apis
 server.get('/api/questions', (req, res)=> {
     let {questions} = require('./mock_api');
