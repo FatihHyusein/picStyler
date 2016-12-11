@@ -15,6 +15,7 @@ import createRoutes from 'routes/index';
 import {Provider} from 'react-redux';
 
 import Helmet from 'react-helmet';
+import cookie from 'react-cookie';
 
 let server = new Express();
 let port = process.env.PORT || 3000;
@@ -78,6 +79,17 @@ server.post('/api/login', (req, res)=> {
     res.send(myProfile);
 });
 
+server.post('/api/logout', (req, res)=> {
+    let {myProfile} = require('./mock_api');
+    res.send({});
+});
+
+
+server.post('/api/register', (req, res)=> {
+    let {myProfile} = require('./mock_api');
+    res.send(myProfile);
+});
+
 
 // mock apis
 server.get('/api/questions', (req, res)=> {
@@ -111,6 +123,7 @@ server.get('/api/questions/:id', (req, res)=> {
 });
 
 server.get('*', (req, res, next)=> {
+    cookie.plugToRequest(req, res);
     let history = useRouterHistory(useQueries(createMemoryHistory))();
     let store = configureStore();
     let routes = createRoutes(history);

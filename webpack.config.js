@@ -17,6 +17,7 @@ var config = {
             'react-router',
             'redux',
             'react-dom',
+            'react-cookie',
             'lodash',
             'bluebird',
             'humps',

@@ -25,3 +25,26 @@ export function login(loginData) {
         }
     }
 }
+
+export const PROCEED_LOGOUT = Symbol('PROCEED_LOGOUT');
+export function logout() {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: '/api/logout',
+            successType: PROCEED_LOGOUT,
+        }
+    }
+}
+
+export function register(registerData) {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: '/api/register',
+            successType: PROCEED_LOGIN,
+            body: registerData
+        }
+    }
+}
+

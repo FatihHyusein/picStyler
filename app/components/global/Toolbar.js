@@ -6,11 +6,27 @@ class Toolbar extends Component {
     constructor(props) {
         super(props);
 
+        this.logout = this.logout.bind(this);
         this.toggleSidenav = this.toggleSidenav.bind(this);
         this.toggleLoginForm = this.toggleLoginForm.bind(this);
     }
 
     render() {
+        let profile = (
+            <div>
+                <img src={this.props.globalProps.globals.get('myProfile').get('profileImgUrl')}
+                     alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
+
+                <button onClick={this.logout}>Logout</button>
+            </div>
+        );
+
+        let login = (
+            <div>
+                <button onClick={this.toggleLoginForm}>Log in</button>
+            </div>
+        );
+
         return (
             <div className="toolbar">
                 <div>
@@ -25,9 +41,7 @@ class Toolbar extends Component {
                         <button>Upload <img className="action-img" src="/assets/icons/hamburger.png"
                                             alt="img uploader"/></button>
                     </div>
-                    <div>
-                        <button onClick={this.toggleLoginForm}>Log in</button>
-                    </div>
+                    {this.props.globalProps.globals.get('myProfile').get('authToken') ? profile : login}
                 </div>
             </div>
 
@@ -40,6 +54,10 @@ class Toolbar extends Component {
 
     toggleLoginForm() {
         this.props.globalProps.dispatch(GlobalActions.toggleLoginForm());
+    }
+
+    logout() {
+        this.props.globalProps.dispatch(GlobalActions.logout());
     }
 }
 

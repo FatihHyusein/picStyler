@@ -9,7 +9,6 @@ export const CHAIN_API = Symbol('CHAIN_API');
 
 export default ({dispatch, getState}) => next => action => {
     if (action[CALL_API]) {
-        console.log(4);
         return dispatch({
             [CHAIN_API]: [
                 ()=> action
@@ -48,12 +47,15 @@ function actionWith(action, toMerge) {
 }
 
 function createRequestPromise(apiActionCreator, next, getState, dispatch) {
+
     return (prevBody)=> {
         let apiAction = apiActionCreator(prevBody);
         let deferred = Promise.defer();
         let params = extractParams(apiAction[CALL_API]);
+        let authToken = getState().globals.get('myProfile').get('authToken');
 
         superAgent[params.method](params.url)
+            .set('Authorization', authToken)
             .send(params.body)
             .query(params.query)
             .end((err, res)=> {
