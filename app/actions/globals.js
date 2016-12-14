@@ -48,3 +48,23 @@ export function register(registerData) {
     }
 }
 
+
+export const TOGGLE_UPLOAD_FORM = Symbol('TOGGLE_UPLOAD_FORM');
+export function toggleUploadForm() {
+    return {
+        type: TOGGLE_UPLOAD_FORM
+    }
+}
+
+
+export const UPLOAD_IMAGE = Symbol('UPLOAD_IMAGE');
+export function uploadImage(imageData) {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: '/api/uploadImage',
+            successType: UPLOAD_IMAGE,
+            body: imageData
+        }
+    }
+}

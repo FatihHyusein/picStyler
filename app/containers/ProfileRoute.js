@@ -19,7 +19,7 @@ class ProfileRoute extends Component {
         let profile = this.props.profileData.get('profile');
 
         return (
-            <div>
+            <div className="profile-view">
                 <Helmet
                     title={profile.get('name')}
                 />

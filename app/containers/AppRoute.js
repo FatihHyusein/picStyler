@@ -5,13 +5,19 @@ import SideNavigation from '../components/global/SideNavigation';
 import Toolbar from '../components/global/Toolbar';
 import Footer from '../components/global/Footer';
 import Login from '../components/popups/login/Login';
+import UploadFile from '../components/popups/UploadFile';
 
 class AppRoute extends Component {
     render() {
-        let loginPopup;
+        let loginPopup,
+            uploadImgPopup;
         if (this.props.globals.get('loginToggled')) {
-            loginPopup = <Login/>
+            loginPopup = <Login/>;
         }
+        if (this.props.globals.get('uploadImgToggled')) {
+            uploadImgPopup = <UploadFile/>;
+        }
+
 
         return (
             <div>
@@ -31,6 +37,7 @@ class AppRoute extends Component {
                 {this.props.children}
                 <Footer/>
                 {loginPopup}
+                {uploadImgPopup}
             </div>
         )
     }

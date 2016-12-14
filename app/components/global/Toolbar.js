@@ -9,6 +9,7 @@ class Toolbar extends Component {
         this.logout = this.logout.bind(this);
         this.toggleSidenav = this.toggleSidenav.bind(this);
         this.toggleLoginForm = this.toggleLoginForm.bind(this);
+        this.toggleImgUploadForm = this.toggleImgUploadForm.bind(this);
     }
 
     render() {
@@ -41,8 +42,9 @@ class Toolbar extends Component {
                 </div>
                 <div>
                     <div className={`${isLogged ? '' : 'display-none'}`}>
-                        <button>Upload <img className="action-img" src="/assets/icons/hamburger.png"
-                                            alt="img uploader"/></button>
+                        <button onClick={this.toggleImgUploadForm}>Upload <img className="action-img"
+                                                                               src="/assets/icons/hamburger.png"
+                                                                               alt="img uploader"/></button>
                     </div>
                     {isLogged ? profile : login}
                 </div>
@@ -57,6 +59,10 @@ class Toolbar extends Component {
 
     toggleLoginForm() {
         this.props.globalProps.dispatch(GlobalActions.toggleLoginForm());
+    }
+
+    toggleImgUploadForm() {
+        this.props.globalProps.dispatch(GlobalActions.toggleUploadForm());
     }
 
     logout() {
