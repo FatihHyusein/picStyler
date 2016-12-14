@@ -52,6 +52,44 @@
     }
 
     .gallery-item-popup-content {
+        max-width: 500px;
+        margin: auto;
+
+        .basic-info-container {
+            & > div {
+                display: inline-block;
+                vertical-align: middle;
+
+                &:first-child {
+                    text-align: left;
+                    min-width: 150px;
+                    width: 40%;
+                }
+                &:last-child {
+                    text-align: right;
+                    min-width: 150px;
+                    width: 50%;
+                }
+            }
+
+            .photograph-container {
+
+                & > div {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                .avatar {
+                    margin-left: 10px;
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+
         .social-container {
             .comment {
                 display: flex;
@@ -64,7 +102,7 @@
                     img {
                         width: 40px;
                         height: 40px;
-                        border-radius: 50px;
+                        border-radius: 50%;
                     }
                 }
                 .comment-data {

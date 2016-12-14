@@ -123,6 +123,11 @@ export let galleryList = [
                 }
             ]
         },
+        photograph: {
+            name: 'AAA bbb',
+            id: 99,
+            profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+        },
         tagGroups: tagGroups
     },
     {
@@ -150,6 +155,11 @@ export let galleryList = [
                 }
             ]
         },
+        photograph: {
+            name: 'AAA bbb',
+            id: 99,
+            profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+        },
         tagGroups: tagGroups
     },
     {
@@ -163,6 +173,11 @@ export let galleryList = [
             likes: 0,
             shares: 0,
             comments: []
+        },
+        photograph: {
+            name: 'AAA bbb',
+            id: 99,
+            profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
         },
         tagGroups: []
     },
@@ -179,6 +194,11 @@ export let galleryList = [
             shares: 0,
             comments: []
         },
+        photograph: {
+            name: 'AAA bbb',
+            id: 99,
+            profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
+        },
         tagGroups: []
     },
     {
@@ -192,6 +212,11 @@ export let galleryList = [
             likes: 0,
             shares: 0,
             comments: []
+        },
+        photograph: {
+            name: 'AAA bbb',
+            id: 99,
+            profileImgUrl: 'https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/10354953_979665262059478_8838653060096267035_n.jpg?oh=5c01533c64ca0cb6dbd91af994181964&oe=58B6619C'
         },
         tagGroups: []
     },

@@ -33,7 +33,37 @@ class GalleryItemPopup extends Component {
             <div className="gallery-item-popup">
                 <div className="close-icon" onClick={this.props.closePopupHandler.bind(this)}></div>
                 <div className="gallery-item-popup-content">
-                    <img src={item.get('imgUrl')} alt={item.get('description')}/>
+                    <div>
+                        <img src={item.get('imgUrl')} alt={item.get('description')}/>
+                    </div>
+
+                    <div className="basic-info-container">
+                        <div className="basic-social-container">
+                            <div>
+                                liked: {item.get('liked').toString()}
+                            </div>
+                            <div>
+                                share
+                            </div>
+                        </div>
+
+                        <div className="photograph-container">
+                            <div>
+                                <div>Фотограф</div>
+                                <div>
+                                    {item.get('photograph').get('name')}
+                                </div>
+                                <div>
+                                    <Link to={`/profiles/${item.get('photograph').get('id')}`}> Виж профила</Link>
+                                </div>
+                            </div>
+
+                            <div className="avatar">
+                                <img src={item.get('photograph').get('profileImgUrl')}
+                                     alt={item.get('photograph').get('name')}/>
+                            </div>
+                        </div>
+                    </div>
                     <div className="social-container">
 
                         {comments}
