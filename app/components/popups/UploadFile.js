@@ -8,22 +8,38 @@ class UploadFile extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleUploadForm = this.toggleUploadForm.bind(this);
-        this.upload = this.upload.bind(this);
+        this.state = {
+            file: '',
+            imagePreviewUrl: '',
+            description: ''
+        };
 
+        this.toggleUploadForm = this.toggleUploadForm.bind(this);
         this.imageUploadChange = this.imageUploadChange.bind(this);
         this.descriptionChange = this.descriptionChange.bind(this);
+
+        this.upload = this.upload.bind(this);
     }
 
     render() {
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl}/>);
+        }
+
         return (
             <div className="gallery-item-popup">
                 <div className="close-icon" onClick={this.toggleUploadForm}></div>
                 <div className="gallery-item-popup-content">
                     <div>
                         <h3>Upload Image</h3>
-                        <form onSubmit={this.upload}>
-                            <input type="file" placeholder="image" onChange={this.imageUploadChange}/>
+                        <form onSubmit={this.upload} encType="multipart/form-data">
+                            <div>
+                                {$imagePreview}
+                                <input type="file" placeholder="image" onChange={this.imageUploadChange}/>
+                            </div>
+
 
                             <textarea placeholder="Your description" onChange={this.descriptionChange}></textarea>
                             <input type="submit" value="Upload"/>
@@ -43,7 +59,19 @@ class UploadFile extends Component {
     }
 
     imageUploadChange(e) {
-        this.setState({img: e.target.value});
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        };
+
+        reader.readAsDataURL(file)
     }
 
     descriptionChange(e) {
@@ -56,11 +84,25 @@ class UploadFile extends Component {
 
     upload(e) {
         e.preventDefault();
+        let imageFormData = new FormData();
 
-        this.props.dispatch(GlobalActions.uploadImage({
-            img: this.state.img,
-            description: this.state.description
-        }));
+        imageFormData.append('imageFile', this.state.file);
+        imageFormData.append('description', this.state.description);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', '/upload', true);
+        xhr.setRequestHeader("Authorization", this.props.myProfile.get('authToken'));
+
+        xhr.onload = function () {
+            if (this.status == 200) {
+                this.props.dispatch(GlobalActions.uploadImageSuccess({
+                    response: this.response
+                }));
+
+            } else {
+            }
+        };
+        xhr.send(imageFormData);
     }
 }
 

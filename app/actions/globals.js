@@ -68,3 +68,11 @@ export function uploadImage(imageData) {
         }
     }
 }
+
+export const UPLOAD_IMAGE_SUCCESS = Symbol('UPLOAD_IMAGE_SUCCESS');
+export function uploadImageSuccess(imageData) {
+    return {
+        type: UPLOAD_IMAGE_SUCCESS,
+        response: imageData
+    }
+}

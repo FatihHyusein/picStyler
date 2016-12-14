@@ -37,6 +37,11 @@ export default function (state = defaultState, action) {
             state = state.merge(action.response);
             return state.merge({uploadImgToggled: !state.get('uploadImgToggled')});
 
+
+        case ActionType.UPLOAD_IMAGE_SUCCESS:
+            state = state.merge(action.response);
+            return state.merge({uploadImgToggled: !state.get('uploadImgToggled')});
+
         case ActionType.PROCEED_LOGOUT:
             saveData({
                 profileImgUrl: "",
