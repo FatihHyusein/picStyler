@@ -90,6 +90,10 @@ server.post('/api/register', (req, res)=> {
     res.send(myProfile);
 });
 
+server.post('/api/upload', (req, res)=> {
+    let {myProfile} = require('./mock_api');
+    res.send(myProfile);
+});
 
 // mock apis
 server.get('/api/questions', (req, res)=> {

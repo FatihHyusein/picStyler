@@ -90,12 +90,13 @@ class UploadFile extends Component {
         imageFormData.append('description', this.state.description);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('post', '/upload', true);
+        xhr.open('post', '/api/upload', true);
         xhr.setRequestHeader("Authorization", this.props.myProfile.get('authToken'));
 
+        let dispatch = this.props.dispatch;
         xhr.onload = function () {
             if (this.status == 200) {
-                this.props.dispatch(GlobalActions.uploadImageSuccess({
+                dispatch(GlobalActions.uploadImageSuccess({
                     response: this.response
                 }));
 
