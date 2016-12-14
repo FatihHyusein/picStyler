@@ -51,6 +51,31 @@
         cursor: pointer;
     }
 
+    .tag-groups-container {
+        .tag-group-header {
+            margin: 10px 5px;
+            color: orangered;
+        }
+
+        .tag-group {
+            margin: 5px;
+            .tag-header {
+
+            }
+
+            .tags-container {
+                .tag {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 10px;
+                    img {
+                        width: 100px;
+                    }
+                }
+            }
+        }
+    }
+
     .gallery-item-popup-content {
         max-width: 500px;
         margin: auto;

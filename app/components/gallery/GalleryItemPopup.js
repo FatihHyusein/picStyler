@@ -12,6 +12,32 @@ class GalleryItemPopup extends Component {
 
     render() {
         let item = this.props.item;
+        let tagGroupList = (
+            item.get('tagGroups').valueSeq().map((tagGroup)=> {
+                let id = tagGroup.get('id') + tagGroup.get('name');
+                return (
+                    <div key={id} className="tag-group">
+                        <div className="tag-header">
+                            {tagGroup.get('name')}: {tagGroup.get('tags').size}
+                        </div>
+                        <div className="tags-container">
+                            {
+                                tagGroup.get('tags').valueSeq().map((tag)=> {
+                                    let tagId = tag.get('id') + tag.get('name');
+                                    return (
+                                        <div key={tagId} className="tag">
+                                            <img src={tag.get('imgUrl')} alt={tag.get('name')}/>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                )
+            })
+        );
+
+
         let comments = (
             item.get('social').get('comments').valueSeq().map((comment)=> {
                 let id = comment.get('id');
@@ -64,6 +90,16 @@ class GalleryItemPopup extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <div className="tag-groups-container">
+                        <div className="tag-group-header">
+                            ХАРЕСВАШ ТОЗИ СТИЛ?
+                        </div>
+
+                        {tagGroupList}
+                    </div>
+
+
                     <div className="social-container">
 
                         {comments}
