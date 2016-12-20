@@ -5,6 +5,7 @@ import globals from './globals';
 import profiles from './profiles';
 import profileDetail from './profileDetail';
 import gallery from  './gallery';
+import tagGroups from  './tagGroups';
 
 const rootReducer = combineReducers({
     questions,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     globals,
     profiles,
     profileDetail,
-    gallery
+    gallery,
+    tagGroups
 });
 
 export default rootReducer;

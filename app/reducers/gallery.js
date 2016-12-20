@@ -8,6 +8,7 @@ function gallery(state = defaultState, action) {
             return Immutable.fromJS(action.response);
             break;
         case ActionType.ADD_COMMENT:
+        case ActionType.ADD_TAG_GROUP_TO_ITEM:
             return state.update(
                 state.findIndex(function (item) {
                     if (item.get("id") === action.response.id) {

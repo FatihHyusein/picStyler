@@ -62,6 +62,21 @@ server.get('/api/galleryItem/:id', (req, res)=> {
     res.send(galleryList[req.params.id]);
 });
 
+server.get('/api/tagGroups/:itemId', (req, res)=> {
+    let {tagGroups} = require('./mock_api');
+    res.send(tagGroups);
+});
+
+server.post('/api/galleryItem/:id/addTagGroup', (req, res)=> {
+    let {galleryList} = require('./mock_api');
+    galleryList[req.params.id].tagGroups.push({
+        id: (new Date()).getTime(),
+        name: (new Date()).getTime(),
+        tags: []
+    });
+    res.send(galleryList[req.params.id]);
+});
+
 server.post('/api/galleryItem/:id/addComment', (req, res)=> {
     let {galleryList} = require('./mock_api');
     let newId = galleryList[req.params.id].social.comments.length + 50;

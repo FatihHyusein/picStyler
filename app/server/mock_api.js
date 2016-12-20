@@ -94,6 +94,20 @@ export const tagGroups = [
         tags: [
             tags[2], tags[3]
         ]
+    },
+    {
+        id: 3,
+        name: 'bags',
+        tags: [
+            tags[2], tags[3]
+        ]
+    },
+    {
+        id: 4,
+        name: 'All ALL',
+        tags: [
+            tags[2], tags[3]
+        ]
     }
 ];
 

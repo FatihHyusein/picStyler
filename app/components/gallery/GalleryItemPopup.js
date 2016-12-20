@@ -2,12 +2,17 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {addComment} from '../../actions/gallery';
+import NewTagGroupPopup from './newTagGroupPopup/newTagGroupPopup';
 
 class GalleryItemPopup extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            openedTagGroupPopup: false
+        };
 
         this.sendNewComment = this.sendNewComment.bind(this);
+        this.toggleNewGroupPopup = this.toggleNewGroupPopup.bind(this);
     }
 
     render() {
@@ -94,6 +99,9 @@ class GalleryItemPopup extends Component {
                     <div className="tag-groups-container">
                         <div className="tag-group-header">
                             ХАРЕСВАШ ТОЗИ СТИЛ?
+                            <button onClick={this.toggleNewGroupPopup}>Add Group</button>
+                            {this.state.openedTagGroupPopup ?
+                                <NewTagGroupPopup item={this.props.item} closePopupHandler={this.toggleNewGroupPopup}/> : ''}
                         </div>
 
                         {tagGroupList}
@@ -103,7 +111,8 @@ class GalleryItemPopup extends Component {
                     <div className="social-container">
 
                         {comments}
-                        <div className={`comment new-comment ${this.props.myProfile.get('authToken') ? '' : 'display-none'}`}>
+                        <div
+                            className={`comment new-comment ${this.props.myProfile.get('authToken') ? '' : 'display-none'}`}>
                             <div className="comment-profile">
                                 <img src={this.props.myProfile.get('profileImgUrl')}
                                      alt={this.props.myProfile.get('name')}/>
@@ -118,6 +127,10 @@ class GalleryItemPopup extends Component {
                 </div>
             </div>
         )
+    }
+
+    toggleNewGroupPopup() {
+        this.setState({openedTagGroupPopup: !this.state.openedTagGroupPopup});
     }
 
     sendNewComment() {
