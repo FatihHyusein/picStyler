@@ -79,6 +79,7 @@
     .gallery-item-popup-content {
         max-width: 500px;
         margin: auto;
+        text-align: center;
 
         .basic-info-container {
             & > div {
@@ -121,6 +122,10 @@
                 border-bottom: 1px solid gray;
                 padding: 5px;
                 text-align: left;
+
+                &.new-comment {
+                    justify-content: center;
+                }
 
                 .comment-profile {
                     margin-right: 5px;

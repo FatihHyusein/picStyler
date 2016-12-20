@@ -103,7 +103,7 @@ class GalleryItemPopup extends Component {
                     <div className="social-container">
 
                         {comments}
-                        <div className={`comment ${this.props.myProfile.get('authToken') ? '' : 'display-none'}`}>
+                        <div className={`comment new-comment ${this.props.myProfile.get('authToken') ? '' : 'display-none'}`}>
                             <div className="comment-profile">
                                 <img src={this.props.myProfile.get('profileImgUrl')}
                                      alt={this.props.myProfile.get('name')}/>
