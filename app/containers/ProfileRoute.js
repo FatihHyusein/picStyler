@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {loadProfileDetail} from '../actions/profiles';
 import Helmet from 'react-helmet';
 import {browserHistory} from 'react-router';
+import GalleryList from '../components/gallery/GalleryList';
 
 class ProfileRoute extends Component {
     static fetchData({store, params, history}) {
@@ -26,6 +27,8 @@ class ProfileRoute extends Component {
                 <img src={profile.get('profileImgUrl')} alt={profile.get('name')}/>
                 <h1>{profile.get('name')}</h1>
                 <p>{profile.get('description')}</p>
+
+                <GalleryList items={this.props.profileData.get('galleryList')}/>
             </div>
         )
     }

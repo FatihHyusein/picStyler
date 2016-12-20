@@ -108,7 +108,10 @@ server.get('/api/profiles', (req, res)=> {
 
 
 server.get('/api/profiles/:id', (req, res)=> {
-    res.send({profile: require('./mock_api').getProfileById(req.params.id)})
+    res.send({
+        profile: require('./mock_api').getProfileById(req.params.id),
+        galleryList: require('./mock_api').galleryList
+    })
 });
 
 
