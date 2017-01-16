@@ -1,0 +1,44 @@
+.login {
+    .gallery-item-popup-content {
+        display: flex;
+        max-width: 800px;
+
+        .login-image-container {
+
+        }
+
+        .login-form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 50px;
+            background-color: white;
+
+            .login-header {
+                text-align: center;
+                font-size: 150%;
+                font-weight: 700;
+                margin-bottom: 30px;
+                color: #d4a457;
+            }
+
+            .login-forgot-pass-container {
+                display: flex;
+                justify-content: space-between;
+                input {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+
+            input {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .btn {
+
+            }
+        }
+    }
+}

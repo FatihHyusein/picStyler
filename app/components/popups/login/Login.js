@@ -28,39 +28,66 @@ class Login extends Component {
     render() {
         let loginForm = (
             <div className={!this.state.isLoginForm ? 'display-none' : ''}>
-                <h3>LOGIN</h3>
-                <form onSubmit={this.login}>
-                    <input type="text" placeholder="Username" onChange={this.handleUsernameChange}/>
-                    <input type="password" placeholder="Password" onChange={this.handlePasswordChange}/>
-                    <input type="submit" value="Sign in"/>
-                </form>
+                <div className="login-header">ВЛЕЗ</div>
+                <div>
+                    <form onSubmit={this.login}>
+                        <input type="text" className="grey-input" placeholder="E-mail"
+                               onChange={this.handleUsernameChange}/>
+                        <input type="password" className="grey-input" placeholder="Парола"
+                               onChange={this.handlePasswordChange}/>
+                        <input type="submit" className="btn" value="Влез"/>
+                        <div className="login-forgot-pass-container">
+                            <i>Забравена парола?</i>
+                            <div>
+                                <label>
+                                    <input type="checkbox"/> Запомни ме
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button className="btn" onClick={this.switchForms}>Влез с <i>facebook</i></button>
+                    <button className="btn" onClick={this.switchForms}>Регистрирай се</button>
+                </div>
             </div>);
 
         let registerForm = (
             <div className={this.state.isLoginForm ? 'display-none' : ''}>
-                <h3>REGISTER</h3>
-                <form onSubmit={this.register}>
-                    <input type="email" placeholder="Email" onChange={this.registerHandleEmailChange}/>
-                    <input type="text" placeholder="Username" onChange={this.registerHandleUsernameChange}/>
-                    <input type="password" placeholder="Password" onChange={this.registerHandlePasswordChange}/>
-                    <input type="submit" value="Sign in"/>
-                </form>
+                <div className="login-header">РЕГИСТРИРАЙ СЕ</div>
+                <div>
+                    <form onSubmit={this.register}>
+                        <input type="email" className="grey-input" placeholder="E-mail"
+                               onChange={this.registerHandleEmailChange}/>
+                        <input type="text" className="grey-input" placeholder="Име"
+                               onChange={this.registerHandleUsernameChange}/>
+                        <input type="password" className="grey-input" placeholder="Парола"
+                               onChange={this.registerHandlePasswordChange}/>
+                        <input type="submit" className="btn" value="Регистрирай се"/>
+                    </form>
+                    <button className="btn" onClick={this.switchForms}>Влез с <i>facebook</i></button>
+                    <p>Вече имаш регистрация?</p>
+                    <button className="btn" onClick={this.switchForms}>ВЛЕЗ</button>
+                </div>
             </div>);
 
-        let switchFormBtn = (
-            <div>
-                <button onClick={this.switchForms}>{this.state.isLoginForm ? 'Register' : 'Login'}</button>
-            </div>
-        );
-
         return (
-            <div className="gallery-item-popup">
+            <div className="login gallery-item-popup">
                 <div className="close-icon" onClick={this.toggleLoginForm}></div>
                 <div className="gallery-item-popup-content">
-                    {loginForm}
-                    {registerForm}
+                    <div className="login-image-container">
+                        <img src="/assets/images/loginPhoto.jpg" alt="login-img"/>
+                    </div>
+                    <div className="login-form-container">
+                        {loginForm}
+                        {registerForm}
 
-                    {switchFormBtn}
+                        <div>
+                            <hr/>
+                            С тази регистрация Вие се съгласявате с нашите
+                            <b>Правила и Условия, Полица на Поверителността</b> и
+                            <b>Употребата на Бисквитки.</b>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

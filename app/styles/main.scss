@@ -3,7 +3,9 @@ body {
 }
 
 @import "helpers";
+@import "components/index";
 @import "home";
 @import "globalComponents";
 @import "gallery";
 @import "profileList";
+@import "login";
