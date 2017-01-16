@@ -37,12 +37,13 @@ export function logout() {
     }
 }
 
+export const PROCEED_REGISTER = Symbol('PROCEED_REGISTER');
 export function register(registerData) {
     return {
         [CALL_API]: {
             method: 'post',
             path: '/api/register',
-            successType: PROCEED_LOGIN,
+            successType: PROCEED_REGISTER,
             body: registerData
         }
     }
@@ -74,5 +75,18 @@ export function uploadImageSuccess(imageData) {
     return {
         type: UPLOAD_IMAGE_SUCCESS,
         response: imageData
+    }
+}
+
+export const UPDATE_MY_PROFILE = Symbol('UPDATE_MY_PROFILE');
+export function updateMyProfile(id, profileData, afterSuccess) {
+    return {
+        [CALL_API]: {
+            method: 'post',
+            path: `/api/profiles/${id}/update`,
+            successType: UPDATE_MY_PROFILE,
+            body: profileData,
+            afterSuccess: afterSuccess
+        }
     }
 }

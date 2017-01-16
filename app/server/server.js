@@ -129,6 +129,12 @@ server.get('/api/profiles/:id', (req, res)=> {
     })
 });
 
+server.post('/api/profiles/:id/update', (req, res)=> {
+    let {myProfile} = require('./mock_api');
+    myProfile.profileImgUrl = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQveQ7Bti9Kx1WlT1AuUt1JH1EtIbEIcgUJPrJbG4_A1TXcBMGkUDZD__-g';
+    res.send(myProfile);
+});
+
 
 server.get('/api/users/:id', (req, res)=> {
     let {getUser} = require('./mock_api');

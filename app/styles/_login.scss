@@ -39,6 +39,29 @@
             .btn {
 
             }
+
+            .logged-form-container {
+                .image-viewer-container {
+                    width: 125px;
+                    height: 125px;
+                    margin: auto;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+
+                .gender-container {
+                    display: flex;
+                    justify-content: space-around;
+                    
+                    input {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
         }
     }
 }

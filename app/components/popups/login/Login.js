@@ -23,11 +23,20 @@ class Login extends Component {
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+
+
+        this.editProfileHandleAvatarChange = this.editProfileHandleAvatarChange.bind(this);
+        this.updateProfile = this.updateProfile.bind(this);
+        this.editProfileHandleAgeChange = this.editProfileHandleAgeChange.bind(this);
+        this.editProfileHandleGenderChange = this.editProfileHandleGenderChange.bind(this);
     }
 
+
     render() {
+        let isLogged = !!this.props.myProfile.get('authToken');
+
         let loginForm = (
-            <div className={!this.state.isLoginForm ? 'display-none' : ''}>
+            <div className={!this.state.isLoginForm || isLogged ? 'display-none' : ''}>
                 <div className="login-header">ВЛЕЗ</div>
                 <div>
                     <form onSubmit={this.login}>
@@ -52,7 +61,7 @@ class Login extends Component {
             </div>);
 
         let registerForm = (
-            <div className={this.state.isLoginForm ? 'display-none' : ''}>
+            <div className={this.state.isLoginForm || isLogged ? 'display-none' : ''}>
                 <div className="login-header">РЕГИСТРИРАЙ СЕ</div>
                 <div>
                     <form onSubmit={this.register}>
@@ -70,6 +79,44 @@ class Login extends Component {
                 </div>
             </div>);
 
+        let loggedForm = (
+            <div className={isLogged ? '' : 'display-none'}>
+                <div className="login-header">ПРОФИЛ</div>
+                <div className="logged-form-container">
+                    <form onSubmit={this.updateProfile}>
+                        <label>
+                            <div className="image-viewer-container">
+                                <img src={this.state.avatar ? this.state.avatar : "/assets/icons/avatar_bg.png"}
+                                     id="image-viewer"/>
+                            </div>
+                            <input type="file" className="display-none" id="profile-picture"
+                                   onChange={this.editProfileHandleAvatarChange}/>
+                        </label>
+                        <div>{this.props.myProfile.get('name')}</div>
+                        <input type="number" className="grey-input" placeholder="Години"
+                               onChange={this.editProfileHandleAgeChange}/>
+                        <div className="gender-container">
+                            <label>
+                                <input type="radio"
+                                       value="0"
+                                       checked={this.state.gender == 0}
+                                       onChange={this.editProfileHandleGenderChange}/> Дама
+                            </label>
+
+                            <label>
+                                <input type="radio"
+                                       value="1"
+                                       checked={this.state.gender == 1}
+                                       onChange={this.editProfileHandleGenderChange}/> Джентълмен
+                            </label>
+                        </div>
+                        <input type="submit" className="btn" value="Готово"/>
+                    </form>
+                    <button className="btn" onClick={this.toggleLoginForm}>Пропусни</button>
+                </div>
+            </div>
+        );
+
         return (
             <div className="login gallery-item-popup">
                 <div className="close-icon" onClick={this.toggleLoginForm}></div>
@@ -80,6 +127,7 @@ class Login extends Component {
                     <div className="login-form-container">
                         {loginForm}
                         {registerForm}
+                        {loggedForm}
 
                         <div>
                             <hr/>
@@ -147,6 +195,39 @@ class Login extends Component {
             password: this.state.registerPassword,
             email: this.state.registerEmail
         }));
+    }
+
+
+    editProfileHandleAgeChange(e) {
+        this.setState({age: e.target.value});
+    }
+
+    editProfileHandleGenderChange(e) {
+        this.setState({gender: e.target.value});
+    }
+
+    editProfileHandleAvatarChange(e) {
+        var reader = new FileReader();
+        reader.onloadend = (e) => {
+            this.setState({avatar: e.target.result});
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    updateProfile(e) {
+        e.preventDefault();
+
+        this.props.dispatch(GlobalActions.updateMyProfile(this.props.myProfile.get('id'),
+            {
+                avatar: this.state.avatar,
+                age: this.state.age,
+                gender: this.state.gender,
+
+            },
+            () => {
+                this.toggleLoginForm();
+            }));
     }
 }
 

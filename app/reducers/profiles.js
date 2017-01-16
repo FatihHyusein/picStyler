@@ -6,7 +6,6 @@ function profilesReducer(state = defaultState, action) {
     switch (action.type) {
         case ActionType.LOADED_PROFILES:
             return Immutable.fromJS(action.response);
-            break;
         default:
             return state;
     }

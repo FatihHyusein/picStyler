@@ -1,4 +1,6 @@
 import * as ActionType from '../actions/globals';
+import * as ProfileActionType from '../actions/profiles';
+
 import _ from 'lodash';
 import Immutable from 'immutable';
 import cookie from 'react-cookie';
@@ -28,6 +30,16 @@ export default function (state = defaultState, action) {
             saveData(action.response);
             cookieState = returnStateFromCookie(state);
             return cookieState ? cookieState.merge({loginToggled: !state.get('loginToggled')}) : state;
+
+        case ActionType.PROCEED_REGISTER:
+            saveData(action.response);
+            cookieState = returnStateFromCookie(state);
+            return cookieState ? cookieState : state;
+
+        case ActionType.UPDATE_MY_PROFILE:
+            saveData(action.response);
+            cookieState = returnStateFromCookie(state);
+            return cookieState ? cookieState : state;
 
         case ActionType.TOGGLE_UPLOAD_FORM:
             return state.merge({uploadImgToggled: !state.get('uploadImgToggled')});

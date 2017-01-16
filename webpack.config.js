@@ -9,7 +9,7 @@ var env = {
 };
 
 var config = {
-    devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
+    devtool: DEBUG ? 'source-map' : false,
     entry: {
         app: './app/app',
         vendor: [
