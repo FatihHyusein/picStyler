@@ -24,6 +24,29 @@ class SideNavigation extends Component {
                         })
                     }
                 </ul>
+                <ul className="helper-routes">
+                    {
+                        this.props.helperRoutes.map((route)=> {
+                            return (
+                                <li key={route.url} onClick={this.toggleSidenav}>
+                                    <Link to={`${route.url}`}> { route.title }</Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+
+                <div>
+                    {
+                        this.props.socialLinks.map((route)=> {
+                            return (
+                                <a key={route.url} onClick={this.toggleSidenav} href={`${route.url}`}
+                                   className={`social-icon-bckgr ${route.socialLink}`}></a>
+                            )
+                        })
+                    }
+                </div>
+
             </div>
         )
     }
@@ -38,6 +61,17 @@ SideNavigation.defaultProps = {
         {url: '/', title: "Home"},
         {url: '/about', title: "About picStyler"},
         {url: '/profiles', title: "Profiles"}
+    ],
+    helperRoutes: [
+        {url: '/', title: "Правила и условия"},
+        {url: '/about', title: "Полица на поверителността"},
+        {url: '/profiles', title: "Употреба на Бисквитки"}
+    ],
+    socialLinks: [
+        {url: '/', socialLink: 'facebook'},
+        {url: '/about', socialLink: "pinterest"},
+        {url: '/ab2out', socialLink: "twitter"},
+        {url: '/profiles', socialLink: "instagram"}
     ]
 };
 

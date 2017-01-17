@@ -4,36 +4,152 @@
 
 .side-navigation {
     position: fixed;
-    left: -100%;
-    right: 100%;
-    bottom: 0;
-    top: 120px;
-    background: bisque;
+    left: 10px;
+    top: 58px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #666666;
+    z-index: 100;
     transition-duration: 0.3s;
+    display: none;
 
     &.active {
-        left: 0;
-        right: 0;
+        display: block;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            margin-bottom: 15px;
+
+            a {
+                color: #666666;
+                font-weight: 700;
+                &:hover {
+                    color: #3c3c3c;
+                }
+            }
+        }
+    }
+
+    .helper-routes {
+        position: relative;
+        padding: 5px 0;
+
+        li {
+            font-size: 80%;
+            margin-bottom: 5px;
+        }
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20px;
+            right: -20px;
+            height: 2px;
+            background-color: white;
+        }
+        &:after {
+            top: initial;
+            bottom: 0;
+        }
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50px;
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .social-icon-bckgr {
+        display: inline-block;
+        margin-top: 5px;
+        margin-right: 5px;
+        width: 45px;
+        height: 45px;
+
+        &.facebook {
+            background-image: url("/assets/icons/facebook_share_icon.png");
+            &:hover {
+                background-image: url("/assets/icons/facebook_share_icon_hover.png");
+            }
+        }
+
+        &.pinterest {
+            background-image: url("/assets/icons/facebook_share_icon.png");
+            &:hover {
+                background-image: url("/assets/icons/facebook_share_icon_hover.png");
+            }
+        }
+
+        &.twitter {
+            background-image: url("/assets/icons/facebook_share_icon.png");
+            &:hover {
+                background-image: url("/assets/icons/facebook_share_icon_hover.png");
+            }
+        }
+
+        &.instagram {
+            background-image: url("/assets/icons/facebook_share_icon.png");
+            &:hover {
+                background-image: url("/assets/icons/facebook_share_icon_hover.png");
+            }
+        }
     }
 }
 
 .toolbar {
     display: flex;
     justify-content: space-between;
+    padding: 5px 50px;
+    background-color: black;
     & > div {
         display: flex;
         align-items: center;
     }
 
-    .action-img {
-        width: 30px;
+    .upload-action-img {
+        position: relative;
+        display: block;
+        margin-right: 20px;
+        padding-right: 20px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 2px;
+            background-color: white;
+        }
     }
 
     .logo-container {
         max-width: 75%;
         margin: auto;
         img {
-            width: 100%;
+            width: 189px;
+        }
+    }
+
+    .profile-container {
+        color: white;
+        img {
+            width: 35px;
+            height: 35px;
+            vertical-align: middle;
+            margin-right: 5px;
+            border-radius: 50%;
         }
     }
 

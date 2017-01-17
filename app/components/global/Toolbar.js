@@ -16,35 +16,35 @@ class Toolbar extends Component {
         let isLogged = !!this.props.globalProps.globals.get('myProfile').get('authToken');
 
         let profile = (
-            <div>
+            <div className="profile-container">
                 <Link to={`/profiles/${this.props.globalProps.globals.get('myProfile').get('id')}`}>
                     <img src={this.props.globalProps.globals.get('myProfile').get('profileImgUrl')}
                          alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
+                    {this.props.globalProps.globals.get('myProfile').get('name')}
                 </Link>
                 <button onClick={this.logout}>Logout</button>
             </div>
         );
 
         let login = (
-            <div>
-                <button onClick={this.toggleLoginForm}>Log in</button>
-            </div>
+            <i onClick={this.toggleLoginForm} className="white cpointer"><b>ВЛЕЗ</b></i>
         );
 
         return (
             <div className="toolbar">
                 <div>
-                    <button onClick={this.toggleSidenav}><img className="action-img" src="/assets/icons/hamburger.png"
-                                                              alt="nav-toggler"/></button>
+                    <img className="action-img cpointer" onClick={this.toggleSidenav}
+                         src="/assets/icons/menu_sandwich.png"
+                         alt="nav-toggler"/>
                 </div>
                 <div className="logo-container">
-                    <Link to='/'><img src="/assets/logo.png" alt="logo"/></Link>
+                    <Link to='/'><img src="/assets/icons/picstyler_logo.png" alt="logo"/></Link>
                 </div>
                 <div>
-                    <div className={`${isLogged ? '' : 'display-none'}`}>
-                        <button onClick={this.toggleImgUploadForm}>Upload <img className="action-img"
-                                                                               src="/assets/icons/hamburger.png"
-                                                                               alt="img uploader"/></button>
+                    <div className="upload-action-img">
+                        <img className="action-img cpointer" onClick={this.toggleImgUploadForm}
+                             src="/assets/icons/upload_photo_icon.png"
+                             alt="img uploader"/>
                     </div>
                     {isLogged ? profile : login}
                 </div>
