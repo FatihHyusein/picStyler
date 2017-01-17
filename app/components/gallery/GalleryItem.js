@@ -9,9 +9,21 @@ class GalleryItem extends Component {
             <div className="gallery-item">
                 <img src={item.get('imgUrl')} alt={item.get('description')}/>
                 <div className="social">
-                    <div>{social.get('likes')}</div>
-                    <div>{social.get('shares')}</div>
-                    <div>{social.get('comments').length}</div>
+                    <div className="share-icons-container">
+                        <i className="cpointer social-icon share-icon"></i>
+                        <i className="cpointer social-icon fb-icon"></i>
+                    </div>
+                    <div>
+                        <i className="cpointer social-icon liked-icon"></i>
+                    </div>
+                </div>
+
+                <div className="additional-info">
+                    <div>2 коментара</div>
+                    <div>
+                        <div>София</div>
+                        <div>12.2016</div>
+                    </div>
                 </div>
             </div>
         )
