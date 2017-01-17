@@ -11,6 +11,20 @@ export function loadGallery() {
     }
 }
 
+export const LOADED_GALLERY_ITEM = Symbol('LOADED_GALLERY_ITEM');
+export function loadGalleryItem({id, history}) {
+    return {
+        [CALL_API]: {
+            method: 'get',
+            path: `/api/galleryItem/${id}`,
+            successType: LOADED_GALLERY_ITEM,
+            afterError: ()=> {
+                history.push('/')
+            }
+        }
+    }
+}
+
 export const ADD_COMMENT = Symbol('ADD_COMMENT');
 export function addComment(galleryItemId, commentData) {
     return {

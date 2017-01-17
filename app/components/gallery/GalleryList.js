@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {List} from 'immutable';
 import GalleryItem from './GalleryItem';
 import GalleryItemPopup from './GalleryItemPopup';
+import {browserHistory, Route} from 'react-router';
 
 class GalleryList extends Component {
     constructor(props) {
@@ -19,7 +20,12 @@ class GalleryList extends Component {
     render() {
         let detailView;
         if (this.state.selectedItemId) {
-
+            let galleryItemQueryParam = `?openedGalleryItem=${this.state.selectedItemId}`;
+            if (typeof window !== 'undefined' && galleryItemQueryParam != window.location.search) {
+                browserHistory.push({
+                    search: galleryItemQueryParam
+                });
+            }
             detailView = (<GalleryItemPopup
                 closePopupHandler={this.closeItem}
                 item={ this.props.items.find((item) => {
@@ -27,6 +33,9 @@ class GalleryList extends Component {
                         return item;
                     }
                 })}/>)
+        }
+        else if (browserHistory && this.props.queryParams && this.props.queryParams.openedGalleryItem) {
+            browserHistory.push(`/gallery/${this.props.queryParams.openedGalleryItem}`);
         }
 
         return (

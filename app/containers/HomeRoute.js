@@ -21,7 +21,7 @@ class HomeRoute extends Component {
                     title="Home Page"
                 />
 
-                <GalleryList items={this.props.gallery}/>
+                <GalleryList items={this.props.gallery} queryParams={this.props.location.query}/>
             </div>
         );
     }
