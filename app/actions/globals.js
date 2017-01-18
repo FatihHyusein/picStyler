@@ -44,7 +44,8 @@ export function register(registerData) {
             method: 'post',
             path: '/api/register',
             successType: PROCEED_REGISTER,
-            body: registerData
+            body: registerData,
+            phpApi: true
         }
     }
 }

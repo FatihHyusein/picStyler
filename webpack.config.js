@@ -5,7 +5,8 @@ var AssetsPlugin = require('assets-webpack-plugin');
 var DEBUG = !(process.env.NODE_ENV === 'production');
 var env = {
     NODE_ENV: process.env.NODE_ENV,
-    API_BASE_URL: process.env.API_BASE_URL
+    API_BASE_URL: process.env.API_BASE_URL,
+    PHP_API_BASE_URL: process.env.PHP_API_BASE_URL
 };
 
 var config = {

@@ -98,10 +98,12 @@ function extractParams(callApi) {
         successType,
         errorType,
         afterSuccess,
-        afterError
+        afterError,
+        phpApi
     } = callApi;
 
-    let url = `${config.API_BASE_URL}${path}`;
+    let baseUrl = phpApi ? config.PHP_API_BASE_URL : config.API_BASE_URL;
+    let url = `${baseUrl}${path}`;
 
     return {
         method,
