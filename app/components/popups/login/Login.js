@@ -207,12 +207,16 @@ class Login extends Component {
     }
 
     editProfileHandleAvatarChange(e) {
-        var reader = new FileReader();
-        reader.onloadend = (e) => {
-            this.setState({avatar: e.target.result});
-        };
+        let file = e.target.files[0];
 
-        reader.readAsDataURL(e.target.files[0]);
+        if (file) {
+            let reader = new FileReader();
+            reader.onloadend = (e) => {
+                this.setState({avatar: e.target.result});
+            };
+
+            reader.readAsDataURL(file);
+        }
     }
 
     updateProfile(e) {

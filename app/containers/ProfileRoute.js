@@ -4,6 +4,8 @@ import {loadProfileDetail} from '../actions/profiles';
 import Helmet from 'react-helmet';
 import {browserHistory} from 'react-router';
 import GalleryList from '../components/gallery/GalleryList';
+import NormalProfile from '../components/profile/NormalProfile';
+import PhotographProfile from '../components/profile/PhotographProfile';
 
 class ProfileRoute extends Component {
     static fetchData({store, params, history}) {
@@ -18,17 +20,19 @@ class ProfileRoute extends Component {
 
     render() {
         let profile = this.props.profileData.get('profile');
+        let galleryList = this.props.profileData.get('galleryList');
+
+        let profileComponent = 3 < 2 ? <NormalProfile profileInfo={profile}/> :
+            <PhotographProfile profileInfo={profile}/>;
 
         return (
             <div className="profile-view">
                 <Helmet
                     title={profile.get('name')}
                 />
-                <img src={profile.get('profileImgUrl')} alt={profile.get('name')}/>
-                <h1>{profile.get('name')}</h1>
-                <p>{profile.get('description')}</p>
 
-                <GalleryList items={this.props.profileData.get('galleryList')}/>
+                {profile ? profileComponent : ''}
+                {(galleryList) ? <GalleryList items={galleryList}/> : ''}
             </div>
         )
     }

@@ -41,7 +41,7 @@ class GalleryList extends Component {
         return (
             <div className="gallery-list">
                 {
-                    this.props.items.map((item)=> {
+                    (this.props.items) ? this.props.items.map((item)=> {
                         let id = item.get('id');
                         return (
                             <div key={id} onClick={() => {
@@ -50,7 +50,7 @@ class GalleryList extends Component {
                                 <GalleryItem item={item}/>
                             </div>
                         )
-                    })
+                    }) : ''
                 }
 
                 {detailView}

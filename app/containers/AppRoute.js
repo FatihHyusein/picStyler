@@ -6,6 +6,7 @@ import Toolbar from '../components/global/Toolbar';
 import Footer from '../components/global/Footer';
 import Login from '../components/popups/login/Login';
 import UploadFile from '../components/popups/UploadFile';
+import UploadMultipleFiles from '../components/popups/UploadMultipleFiles';
 
 class AppRoute extends Component {
     render() {
@@ -15,7 +16,7 @@ class AppRoute extends Component {
             loginPopup = <Login/>;
         }
         if (this.props.globals.get('uploadImgToggled')) {
-            uploadImgPopup = <UploadFile/>;
+            uploadImgPopup = (3 > 2) ? <UploadMultipleFiles/> : <UploadFile/>;
         }
 
 

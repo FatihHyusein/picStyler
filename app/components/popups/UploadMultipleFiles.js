@@ -4,44 +4,31 @@ import {Link} from 'react-router';
 import * as GlobalActions from '../../actions/globals';
 
 
-class UploadFile extends Component {
+class UploadMultipleFiles extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            file: '',
-            imagePreviewUrl: '',
-            description: ''
+            files: ''
         };
 
         this.toggleUploadForm = this.toggleUploadForm.bind(this);
-        this.imageUploadChange = this.imageUploadChange.bind(this);
-        this.descriptionChange = this.descriptionChange.bind(this);
 
         this.upload = this.upload.bind(this);
     }
 
     render() {
-        let {imagePreviewUrl} = this.state;
-        let $imagePreview = null;
-        if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl}/>);
-        }
-
         return (
             <div className="gallery-item-popup user-upload-photo-popup">
                 <div className="close-icon" onClick={this.toggleUploadForm}></div>
                 <div className="gallery-item-popup-content">
                     <div>
-                        <h3>Upload Image</h3>
+                        <h3>Upload Images</h3>
                         <form onSubmit={this.upload} encType="multipart/form-data">
                             <div>
-                                {$imagePreview}
-                                <input type="file" placeholder="image" onChange={this.imageUploadChange}/>
+                                <input type="file" placeholder="image" multiple="true" ref='filesInput'/>
                             </div>
 
-
-                            <textarea placeholder="Your description" onChange={this.descriptionChange}></textarea>
                             <input type="submit" value="Upload"/>
                         </form>
                     </div>
@@ -58,27 +45,6 @@ class UploadFile extends Component {
         document.body.classList.remove('overflow-hidden');
     }
 
-    imageUploadChange(e) {
-        e.preventDefault();
-
-        let file = e.target.files[0];
-        if (file) {
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                this.setState({
-                    file: file,
-                    imagePreviewUrl: reader.result
-                });
-            };
-
-            reader.readAsDataURL(file);
-        }
-    }
-
-    descriptionChange(e) {
-        this.setState({description: e.target.value});
-    }
-
     toggleUploadForm() {
         this.props.dispatch(GlobalActions.toggleUploadForm());
     }
@@ -87,8 +53,13 @@ class UploadFile extends Component {
         e.preventDefault();
         let imageFormData = new FormData();
 
-        imageFormData.append('imageFile', this.state.file);
-        imageFormData.append('description', this.state.description);
+        let filesList = this.refs.filesInput.files;
+        for (let i in filesList) {
+            if (filesList.hasOwnProperty(i)) {
+                imageFormData.append(`files[${i}]`, filesList[i]);
+            }
+        }
+
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/api/upload', true);
@@ -108,12 +79,12 @@ class UploadFile extends Component {
     }
 }
 
-UploadFile.propTypes = {};
+UploadMultipleFiles.propTypes = {};
 
 function mapStateToProps(state) {
     return {myProfile: state.globals.get('myProfile')}
 }
-export {UploadFile};
+export {UploadMultipleFiles};
 
-export default connect(mapStateToProps)(UploadFile)
+export default connect(mapStateToProps)(UploadMultipleFiles)
 
