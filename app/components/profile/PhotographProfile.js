@@ -6,6 +6,7 @@ class PhotographProfile extends Component {
     render() {
         return (
             <div className="photograph-profile">
+                <button onClick={this.props.logoutCb}>Logout</button>
                 <img src={this.props.profileInfo.get('profileImgUrl')} alt={this.props.profileInfo.get('name')}/>
                 <div>{ this.props.profileInfo.get('name') }</div>
                 <div>Фотограф</div>
@@ -21,13 +22,16 @@ class PhotographProfile extends Component {
                         <div>Харесвани<br/>стилове</div>
                     </div>
                 </div>
+                <button onClick={this.props.openEditProfilePopupCb}>Edit</button>
             </div>
         )
     }
 }
 
 PhotographProfile.propTypes = {
-    profileInfo: PropTypes.object.isRequired
+    profileInfo: PropTypes.object.isRequired,
+    logoutCb: PropTypes.func,
+    openEditProfilePopupCb: PropTypes.func
 };
 
 export default PhotographProfile;

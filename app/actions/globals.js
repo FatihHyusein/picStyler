@@ -27,12 +27,13 @@ export function login(loginData) {
 }
 
 export const PROCEED_LOGOUT = Symbol('PROCEED_LOGOUT');
-export function logout() {
+export function logout({afterSuccess}) {
     return {
         [CALL_API]: {
             method: 'post',
             path: '/api/logout',
             successType: PROCEED_LOGOUT,
+            afterSuccess: afterSuccess
         }
     }
 }

@@ -6,7 +6,6 @@ class Toolbar extends Component {
     constructor(props) {
         super(props);
 
-        this.logout = this.logout.bind(this);
         this.toggleSidenav = this.toggleSidenav.bind(this);
         this.toggleLoginForm = this.toggleLoginForm.bind(this);
         this.toggleImgUploadForm = this.toggleImgUploadForm.bind(this);
@@ -22,7 +21,6 @@ class Toolbar extends Component {
                          alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
                     {this.props.globalProps.globals.get('myProfile').get('name')}
                 </Link>
-                <button onClick={this.logout}>Logout</button>
             </div>
         );
 
@@ -63,10 +61,6 @@ class Toolbar extends Component {
 
     toggleImgUploadForm() {
         this.props.globalProps.dispatch(GlobalActions.toggleUploadForm());
-    }
-
-    logout() {
-        this.props.globalProps.dispatch(GlobalActions.logout());
     }
 }
 
