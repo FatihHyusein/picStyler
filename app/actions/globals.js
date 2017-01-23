@@ -43,7 +43,7 @@ export function register(registerData) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: '/api/register',
+            path: '/register',
             successType: PROCEED_REGISTER,
             body: registerData,
             phpApi: true
