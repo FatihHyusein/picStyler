@@ -4,7 +4,7 @@
     "scripts": {
         "start": "cross-env NODE_PATH=./app concurrently --kill-others \"nodemon app/server\" \"node webpack.server.js\" \"gulp css:watch\"",
         "webpack": "webpack",
-        "build": "npm run webpack && gulp build",
+        "build": "rimraf dist/ && npm run webpack && gulp build",
         "postinstall": "npm run build"
     },
     "engines": {
@@ -39,9 +39,7 @@
         "redux-thunk": "^0.1.0",
         "rewire": "^2.3.4",
         "run-sequence": "^1.2.2",
-        "superagent": "^1.4.0"
-    },
-    "devDependencies": {
+        "superagent": "^1.4.0",
         "babel-core": "^6.3.15",
         "babel-loader": "^6.2.0",
         "babel-plugin-react-transform": "^2.0.0",
@@ -69,5 +67,8 @@
         "rimraf": "^2.5.2",
         "webpack": "^1.9.11",
         "webpack-dev-server": "^1.9.0"
+    },
+    "devDependencies": {
+
     }
 }
