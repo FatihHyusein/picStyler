@@ -98,15 +98,15 @@ class Login extends Component {
                         <div className="gender-container">
                             <label>
                                 <input type="radio"
-                                       value="0"
-                                       checked={this.state.gender == 0}
+                                       value="f"
+                                       checked={this.state.gender == 'f'}
                                        onChange={this.editProfileHandleGenderChange}/> Дама
                             </label>
 
                             <label>
                                 <input type="radio"
-                                       value="1"
-                                       checked={this.state.gender == 1}
+                                       value="m"
+                                       checked={this.state.gender == 'm'}
                                        onChange={this.editProfileHandleGenderChange}/> Джентълмен
                             </label>
                         </div>
