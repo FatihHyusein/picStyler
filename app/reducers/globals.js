@@ -12,6 +12,8 @@ let defaultState = Immutable.fromJS({
     uploadImgToggled: false,
     myProfile: {
         userData: {
+            age:'',
+            sex:'',
             email: '',
             username: ''
         },
@@ -41,9 +43,9 @@ export default function (state = defaultState, action) {
 
         case ActionType.UPDATE_MY_PROFILE:
             saveData({
-                userData: action.response.data,
+                userData: action.response.data.userData,
                 token: state.get('myProfile').get('token'),
-                userRole: state.get('myProfile').get('userRole')
+                userRole: action.response.data.userRole
             });
             cookieState = returnStateFromCookie(state);
             return cookieState ? cookieState : state;
@@ -86,7 +88,8 @@ export default function (state = defaultState, action) {
 
     function returnStateFromCookie(state) {
         let cookieData = cookie.load('globals');
-        if (cookieData) {
+
+        if (cookieData && cookieData.userData) {
             return state.merge({
                 myProfile: Immutable.fromJS(cookieData)
             });

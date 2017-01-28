@@ -213,7 +213,10 @@ class Login extends Component {
         if (file) {
             let reader = new FileReader();
             reader.onloadend = (e) => {
-                this.setState({avatar: e.target.result});
+                this.setState({
+                    avatar: e.target.result,
+                    file: file
+                });
             };
 
             reader.readAsDataURL(file);
@@ -224,7 +227,7 @@ class Login extends Component {
         e.preventDefault();
 
         this.props.dispatch(GlobalActions.updateMyProfile({
-                photo: this.state.avatar,
+                photo: {isFile: true, data: this.state.file},
                 age: this.state.age,
                 sex: this.state.gender,
             },

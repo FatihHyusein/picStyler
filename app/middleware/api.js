@@ -54,36 +54,51 @@ function createRequestPromise(apiActionCreator, next, getState, dispatch) {
         let params = extractParams(apiAction[CALL_API]);
         let token = getState().globals.get('myProfile').get('token');
 
-        superAgent[params.method](params.url)
-            .set('Authorization', token)
-            .send(params.body)
-            .query(params.query)
-            .end((err, res)=> {
-                if (err) {
-                    if (params.errorType) {
-                        dispatch(actionWith(apiAction, {
-                            type: params.errorType,
-                            error: err
-                        }));
-                    }
+        let preparedRequest = superAgent[params.method](params.url)
+            .set('Authorization', token);
 
-                    if (_.isFunction(params.afterError)) {
-                        params.afterError({getState});
+        if (params.isMultipart) {
+            for (let k in params.body) {
+                if (params.body.hasOwnProperty(k)) {
+                    if(params.body[k].isFile) {
+                        preparedRequest.attach(k, params.body[k].data);
                     }
-                    deferred.reject();
-                } else {
-                    let resBody = camelizeKeys(res.body);
-                    dispatch(actionWith(apiAction, {
-                        type: params.successType,
-                        response: resBody
-                    }));
-
-                    if (_.isFunction(params.afterSuccess)) {
-                        params.afterSuccess({getState});
+                    else {
+                        preparedRequest.field(k, params.body[k]);
                     }
-                    deferred.resolve(resBody);
                 }
-            });
+            }
+        }
+        else {
+            preparedRequest.send(params.body).query(params.query);
+        }
+
+        preparedRequest.end((err, res)=> {
+            if (err) {
+                if (params.errorType) {
+                    dispatch(actionWith(apiAction, {
+                        type: params.errorType,
+                        error: err
+                    }));
+                }
+
+                if (_.isFunction(params.afterError)) {
+                    params.afterError({getState});
+                }
+                deferred.reject();
+            } else {
+                let resBody = camelizeKeys(res.body);
+                dispatch(actionWith(apiAction, {
+                    type: params.successType,
+                    response: resBody
+                }));
+
+                if (_.isFunction(params.afterSuccess)) {
+                    params.afterSuccess({getState});
+                }
+                deferred.resolve(resBody);
+            }
+        });
 
         return deferred.promise;
     }
@@ -93,6 +108,7 @@ function extractParams(callApi) {
     let {
         method,
         path,
+        isMultipart,
         query,
         body,
         successType,
@@ -108,6 +124,7 @@ function extractParams(callApi) {
     return {
         method,
         url,
+        isMultipart,
         query,
         body,
         successType,

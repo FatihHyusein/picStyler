@@ -19,6 +19,7 @@ export function login(loginData) {
     return {
         [CALL_API]: {
             method: 'post',
+            isMultipart: true,
             path: '/login',
             successType: PROCEED_LOGIN,
             body: loginData,
@@ -87,6 +88,7 @@ export function updateMyProfile(profileData, afterSuccess) {
     return {
         [CALL_API]: {
             method: 'post',
+            isMultipart: true,
             path: `/user`,
             successType: UPDATE_MY_PROFILE,
             body: profileData,
