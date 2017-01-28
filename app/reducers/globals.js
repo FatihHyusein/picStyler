@@ -12,8 +12,8 @@ let defaultState = Immutable.fromJS({
     uploadImgToggled: false,
     myProfile: {
         userData: {
-            age:'',
-            sex:'',
+            age: '',
+            sex: '',
             email: '',
             username: ''
         },
@@ -55,13 +55,7 @@ export default function (state = defaultState, action) {
 
 
         case ActionType.UPLOAD_IMAGE:
-            state = state.merge(action.response);
-            return state.merge({uploadImgToggled: !state.get('uploadImgToggled')});
-
-
-        case ActionType.UPLOAD_IMAGE_SUCCESS:
-            state = state.merge(action.response);
-            return state.merge({uploadImgToggled: !state.get('uploadImgToggled')});
+            return state.merge(action.response);
 
         case ActionType.PROCEED_LOGOUT:
             saveData({

@@ -64,24 +64,20 @@ export function toggleUploadForm() {
 
 
 export const UPLOAD_IMAGE = Symbol('UPLOAD_IMAGE');
-export function uploadImage(imageData) {
+export function uploadImage({imageData, afterSuccess}) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: '/api/uploadImage',
+            isMultipart: true,
+            path: '/uploadImage',
             successType: UPLOAD_IMAGE,
-            body: imageData
+            body: imageData,
+            afterSuccess: afterSuccess,
+            phpApi: true
         }
     }
 }
 
-export const UPLOAD_IMAGE_SUCCESS = Symbol('UPLOAD_IMAGE_SUCCESS');
-export function uploadImageSuccess(imageData) {
-    return {
-        type: UPLOAD_IMAGE_SUCCESS,
-        response: imageData
-    }
-}
 
 export const UPDATE_MY_PROFILE = Symbol('UPDATE_MY_PROFILE');
 export function updateMyProfile(profileData, afterSuccess) {

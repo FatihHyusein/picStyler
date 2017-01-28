@@ -51,14 +51,23 @@ class UploadMultipleFiles extends Component {
 
     upload(e) {
         e.preventDefault();
-        let imageFormData = new FormData();
-
         let filesList = this.refs.filesInput.files;
+        let imagesList = [];
         for (let i in filesList) {
             if (filesList.hasOwnProperty(i)) {
-                imageFormData.append(`files[${i}]`, filesList[i]);
+                filesList.push({
+                    isFile: true,
+                    data: filesList[i]
+                });
             }
         }
+
+        this.props.dispatch(GlobalActions.uploadImage({
+            images: filesList,
+            afterSuccess: () => {
+                this.toggleUploadForm();
+            }
+        }));
 
 
         var xhr = new XMLHttpRequest();

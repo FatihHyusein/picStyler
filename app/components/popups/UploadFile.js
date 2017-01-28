@@ -85,26 +85,16 @@ class UploadFile extends Component {
 
     upload(e) {
         e.preventDefault();
-        let imageFormData = new FormData();
 
-        imageFormData.append('imageFile', this.state.file);
-        imageFormData.append('description', this.state.description);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('post', '/api/upload', true);
-        xhr.setRequestHeader("Authorization", this.props.myProfile.get('token'));
-
-        let dispatch = this.props.dispatch;
-        xhr.onload = function () {
-            if (this.status == 200) {
-                dispatch(GlobalActions.uploadImageSuccess({
-                    response: this.response
-                }));
-
-            } else {
+        this.props.dispatch(GlobalActions.uploadImage({
+            imageData: {
+                imageFile: {isFile: true, data: this.state.file},
+                description: this.state.description
+            },
+            afterSuccess: () => {
+                this.toggleUploadForm();
             }
-        };
-        xhr.send(imageFormData);
+        }));
     }
 }
 
