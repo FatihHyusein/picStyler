@@ -21,7 +21,7 @@ class Login extends Component {
         this.registerHandleUsernameChange = this.registerHandleUsernameChange.bind(this);
         this.registerHandlePasswordChange = this.registerHandlePasswordChange.bind(this);
 
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
 
 
@@ -33,15 +33,15 @@ class Login extends Component {
 
 
     render() {
-        let isLogged = !!this.props.myProfile.get('authToken');
+        let isLogged = !!this.props.myProfile.get('token');
 
         let loginForm = (
             <div className={!this.state.isLoginForm || isLogged ? 'display-none' : ''}>
                 <div className="login-header">ВЛЕЗ</div>
                 <div>
                     <form onSubmit={this.login}>
-                        <input type="text" className="grey-input" placeholder="E-mail"
-                               onChange={this.handleUsernameChange}/>
+                        <input type="email" className="grey-input" placeholder="E-mail"
+                               onChange={this.handleEmailChange}/>
                         <input type="password" className="grey-input" placeholder="Парола"
                                onChange={this.handlePasswordChange}/>
                         <input type="submit" className="btn" value="Влез"/>
@@ -165,8 +165,8 @@ class Login extends Component {
         this.setState({registerPassword: e.target.value});
     }
 
-    handleUsernameChange(e) {
-        this.setState({username: e.target.value});
+    handleEmailChange(e) {
+        this.setState({email: e.target.value});
     }
 
     handlePasswordChange(e) {
@@ -182,7 +182,7 @@ class Login extends Component {
         e.preventDefault();
 
         this.props.dispatch(GlobalActions.login({
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         }));
     }
@@ -202,6 +202,7 @@ class Login extends Component {
         this.setState({age: e.target.value});
     }
 
+    //I cried when i wrote this function. Please, do not change your gender
     editProfileHandleGenderChange(e) {
         this.setState({gender: e.target.value});
     }
@@ -222,12 +223,10 @@ class Login extends Component {
     updateProfile(e) {
         e.preventDefault();
 
-        this.props.dispatch(GlobalActions.updateMyProfile(this.props.myProfile.get('id'),
-            {
-                avatar: this.state.avatar,
+        this.props.dispatch(GlobalActions.updateMyProfile({
+                photo: this.state.avatar,
                 age: this.state.age,
-                gender: this.state.gender,
-
+                sex: this.state.gender,
             },
             () => {
                 this.toggleLoginForm();

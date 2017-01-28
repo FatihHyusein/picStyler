@@ -5,7 +5,7 @@ export function loadProfiles() {
     return {
         [CALL_API]: {
             method: 'get',
-            path: '/api/profiles',
+            path: '/profiles',
             successType: LOADED_PROFILES
         }
     }
@@ -16,7 +16,7 @@ export function loadProfileDetail({id, history}) {
     return {
         [CALL_API]: {
             method: 'get',
-            path: `/api/profiles/${id}`,
+            path: `/profiles/${id}`,
             successType: LOADED_PROFILE_DETAIL,
             afterError: ()=> {
                 history.push('/')
@@ -30,7 +30,7 @@ export function updateProfileDetail(id, profileData, afterSuccess) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: `/api/profiles/${id}/update`,
+            path: `/profiles/${id}/update`,
             successType: UPDATE_PROFILE_DETAIL,
             body: profileData,
             afterSuccess: afterSuccess

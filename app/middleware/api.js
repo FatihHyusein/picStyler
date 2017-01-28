@@ -52,10 +52,10 @@ function createRequestPromise(apiActionCreator, next, getState, dispatch) {
         let apiAction = apiActionCreator(prevBody);
         let deferred = Promise.defer();
         let params = extractParams(apiAction[CALL_API]);
-        let authToken = getState().globals.get('myProfile').get('authToken');
+        let token = getState().globals.get('myProfile').get('token');
 
         superAgent[params.method](params.url)
-            .set('Authorization', authToken)
+            .set('Authorization', token)
             .send(params.body)
             .query(params.query)
             .end((err, res)=> {
@@ -102,7 +102,7 @@ function extractParams(callApi) {
         phpApi
     } = callApi;
 
-    let baseUrl = phpApi ? config.PHP_API_BASE_URL : config.API_BASE_URL;
+    let baseUrl = phpApi ? config.PHP_API_BASE_URL : config.API_BASE_URL + '/api';
     let url = `${baseUrl}${path}`;
 
     return {

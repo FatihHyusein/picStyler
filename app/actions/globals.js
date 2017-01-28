@@ -19,9 +19,10 @@ export function login(loginData) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: '/api/login',
+            path: '/login',
             successType: PROCEED_LOGIN,
-            body: loginData
+            body: loginData,
+            phpApi: true
         }
     }
 }
@@ -31,9 +32,10 @@ export function logout({afterSuccess}) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: '/api/logout',
+            path: '/logout',
             successType: PROCEED_LOGOUT,
-            afterSuccess: afterSuccess
+            afterSuccess: afterSuccess,
+            phpApi: true
         }
     }
 }
@@ -81,14 +83,15 @@ export function uploadImageSuccess(imageData) {
 }
 
 export const UPDATE_MY_PROFILE = Symbol('UPDATE_MY_PROFILE');
-export function updateMyProfile(id, profileData, afterSuccess) {
+export function updateMyProfile(profileData, afterSuccess) {
     return {
         [CALL_API]: {
             method: 'post',
-            path: `/api/profiles/${id}/update`,
+            path: `/user`,
             successType: UPDATE_MY_PROFILE,
             body: profileData,
-            afterSuccess: afterSuccess
+            afterSuccess: afterSuccess,
+            phpApi: true
         }
     }
 }

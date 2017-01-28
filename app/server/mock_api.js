@@ -240,7 +240,7 @@ export let galleryList = [
 export const myProfile = {
     profileImgUrl: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQUZFtJIlYTrlR8TGNZKLhUM3uW3TNVNbM1l4Ns10aQy7qSLutvq6bNiOs",
     name: 'Backend TRUCK',
-    authToken: 'backend token',
+    token: 'backend token',
     id: 99
 };
 

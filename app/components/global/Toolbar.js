@@ -12,14 +12,15 @@ class Toolbar extends Component {
     }
 
     render() {
-        let isLogged = !!this.props.globalProps.globals.get('myProfile').get('authToken');
+        let isLogged = !!this.props.globalProps.globals.get('myProfile').get('token');
 
+        let userData = this.props.globalProps.globals.get('myProfile').get('userData');
         let profile = (
             <div className="profile-container">
-                <Link to={`/profiles/${this.props.globalProps.globals.get('myProfile').get('id')}`}>
-                    <img src={this.props.globalProps.globals.get('myProfile').get('profileImgUrl')}
-                         alt={this.props.globalProps.globals.get('myProfile').get('name')}/>
-                    {this.props.globalProps.globals.get('myProfile').get('name')}
+                <Link to={`/profiles/${userData.get('username')}`}>
+                    <img src={userData.get('profileImgUrl')}
+                         alt={userData.get('username')}/>
+                    {userData.get('username')}
                 </Link>
             </div>
         );

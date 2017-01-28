@@ -122,12 +122,22 @@ server.get('/api/profiles', (req, res)=> {
 });
 
 
+
+server.get('/api/profiles/FatiX', (req, res)=> {
+    res.send({
+        profile: require('./mock_api').getProfileById(1),
+        galleryList: require('./mock_api').galleryList
+    })
+});
+
 server.get('/api/profiles/:id', (req, res)=> {
     res.send({
         profile: require('./mock_api').getProfileById(req.params.id),
         galleryList: require('./mock_api').galleryList
     })
 });
+
+
 
 server.post('/api/profiles/:id/update', (req, res)=> {
     let {myProfile} = require('./mock_api');

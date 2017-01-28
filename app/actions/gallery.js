@@ -5,7 +5,7 @@ export function loadGallery() {
     return {
         [CALL_API]: {
             method: 'get',
-            path: '/api/mainGallery',
+            path: '/mainGallery',
             successType: LOADED_GALLERY
         }
     }

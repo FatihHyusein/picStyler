@@ -92,7 +92,7 @@ class UploadFile extends Component {
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/api/upload', true);
-        xhr.setRequestHeader("Authorization", this.props.myProfile.get('authToken'));
+        xhr.setRequestHeader("Authorization", this.props.myProfile.get('token'));
 
         let dispatch = this.props.dispatch;
         xhr.onload = function () {

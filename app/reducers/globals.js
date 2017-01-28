@@ -11,9 +11,12 @@ let defaultState = Immutable.fromJS({
     loginToggled: false,
     uploadImgToggled: false,
     myProfile: {
-        profileImgUrl: "",
-        name: '',
-        authToken: ''
+        userData: {
+            email: '',
+            username: ''
+        },
+        token: '',
+        userRole: ''
     }
 });
 
@@ -27,17 +30,21 @@ export default function (state = defaultState, action) {
             return state.merge({loginToggled: !state.get('loginToggled')});
 
         case ActionType.PROCEED_LOGIN:
-            saveData(action.response);
+            saveData(action.response.data);
             cookieState = returnStateFromCookie(state);
             return cookieState ? cookieState.merge({loginToggled: !state.get('loginToggled')}) : state;
 
         case ActionType.PROCEED_REGISTER:
-            saveData(action.response);
+            saveData(action.response.data);
             cookieState = returnStateFromCookie(state);
             return cookieState ? cookieState : state;
 
         case ActionType.UPDATE_MY_PROFILE:
-            saveData(action.response);
+            saveData({
+                userData: action.response.data,
+                token: state.get('myProfile').get('token'),
+                userRole: state.get('myProfile').get('userRole')
+            });
             cookieState = returnStateFromCookie(state);
             return cookieState ? cookieState : state;
 
@@ -56,9 +63,12 @@ export default function (state = defaultState, action) {
 
         case ActionType.PROCEED_LOGOUT:
             saveData({
-                profileImgUrl: "",
-                name: '',
-                authToken: ''
+                userData: {
+                    email: '',
+                    username: ''
+                },
+                token: '',
+                userRole: ''
             });
 
             cookieState = returnStateFromCookie(state);
