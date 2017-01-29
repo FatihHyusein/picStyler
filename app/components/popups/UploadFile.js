@@ -31,7 +31,7 @@ class UploadFile extends Component {
         return (
             <div className="gallery-item-popup user-upload-photo-popup">
                 <div className="close-icon" onClick={this.toggleUploadForm}></div>
-                <div className="gallery-item-popup-content">
+                <div className="gallery-item-popup-content white">
                     <div>
                         <h3>Upload Image</h3>
                         <form onSubmit={this.upload} encType="multipart/form-data">
@@ -42,6 +42,10 @@ class UploadFile extends Component {
 
 
                             <textarea placeholder="Your description" onChange={this.descriptionChange}></textarea>
+
+                            <div>
+                                Качи хубави снимки!!!
+                            </div>
                             <input type="submit" value="Upload"/>
                         </form>
                     </div>
@@ -88,7 +92,7 @@ class UploadFile extends Component {
 
         this.props.dispatch(GlobalActions.uploadImage({
             imageData: {
-                imageFile: {isFile: true, data: this.state.file},
+                photo: {isFile: true, data: this.state.file},
                 description: this.state.description
             },
             afterSuccess: () => {

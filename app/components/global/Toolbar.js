@@ -14,6 +14,11 @@ class Toolbar extends Component {
     render() {
         let isLogged = !!this.props.globalProps.globals.get('myProfile').get('token');
 
+        let openImageUploaderHandler = this.toggleLoginForm;
+        if (isLogged) {
+            openImageUploaderHandler = this.props.globalProps.globals.get('myProfile').get('userRole') == 2 ? '' : this.toggleImgUploadForm;
+        }
+
         let userData = this.props.globalProps.globals.get('myProfile').get('userData');
         let profile = (
             <div className="profile-container">
@@ -41,7 +46,8 @@ class Toolbar extends Component {
                 </div>
                 <div>
                     <div className="upload-action-img">
-                        <img className="action-img cpointer" onClick={this.toggleImgUploadForm}
+                        <img className="action-img cpointer"
+                             onClick={openImageUploaderHandler}
                              src="/assets/icons/upload_photo_icon.png"
                              alt="img uploader"/>
                     </div>

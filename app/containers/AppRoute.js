@@ -16,7 +16,7 @@ class AppRoute extends Component {
             loginPopup = <Login/>;
         }
         if (this.props.globals.get('uploadImgToggled')) {
-            uploadImgPopup = (3 > 2) ? <UploadMultipleFiles/> : <UploadFile/>;
+            uploadImgPopup = this.props.globals.get('myProfile').get('userRole') == 2 ? '' : <UploadFile/>;
         }
 
 

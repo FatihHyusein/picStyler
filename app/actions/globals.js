@@ -69,7 +69,7 @@ export function uploadImage({imageData, afterSuccess}) {
         [CALL_API]: {
             method: 'post',
             isMultipart: true,
-            path: '/uploadImage',
+            path: '/photo',
             successType: UPLOAD_IMAGE,
             body: imageData,
             afterSuccess: afterSuccess,
